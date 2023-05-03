@@ -17,11 +17,32 @@
     <hr>
     <p style="color: red;"><b>As soon as the popup appears ,please click Allow. After you've spoken a command,</b></p>
     <h3>Say "selfie" for Taking your selfies and to make a Collage</h3>
-    <button class="btn btn-primary">Start</button>
+    <button class="btn btn-primary" onclick="start()">Start</button>
     <h4 style="color:red;">Press the Start button</h4>
     <p><b>Your Webcam:</b></p>
+    <center>
     <div class="selfie">
-    </div>
+        <video autoplay="true" id="videoElement"></video>
+    </div></center>
+    <br>  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <p><b>Your selfie Will Display Here:</b></p>
     <img id="img_1" src="https://es.digitaltrends.com/wp-content/uploads/2020/06/nikon-d780.jpg?resize=1200%2C630&p=1" style="width:900px; height:500px;">
@@ -32,4 +53,29 @@
     </div>
 </center>
 </body>
-</html>  
+</html>
+<script>
+    var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (error) {
+      console.log("Something went wrong!");
+    });
+}
+
+function stop(e) {
+  var stream = video.srcObject;
+  var tracks = stream.getTracks();
+
+  for (var i = 0; i < tracks.length; i++) {
+    var track = tracks[i];
+    track.stop();
+  }
+
+  video.srcObject = null;
+}
+</script>
